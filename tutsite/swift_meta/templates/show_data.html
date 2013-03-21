@@ -1,0 +1,33 @@
+{% load custom_filters %}
+{% block content %}
+
+    <div class="content">
+
+
+        <div class="" style="width=100%; background-color:#f5f0ff;border-radius: 15px;border:1px solid #6b0088">
+            <div style="width:90%">
+                <h1> Here is the summary of your storage:</h1>
+				{% if conts_and_objs %}
+				    {% for cont,objs in conts_and_objs.items %}
+				    <h2>Container:&nbsp;{{ cont }}</h2>
+						{% autoescape off %}
+						<h6>{{cont_meta|key:cont}}</h6>
+						{% endautoescape %} 
+						{% if objs %}
+						<ul class="objs">
+							{% for obj in objs %}
+							<li><h3>{{obj}}</h3></li>
+							{% autoescape off %}
+							<h6>{{obj_meta|key:obj}}</h6>
+							{% endautoescape %} 
+							{% endfor %}
+						</ul>
+						{% endif %}
+				    {% endfor %}
+				{% endif %}
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
